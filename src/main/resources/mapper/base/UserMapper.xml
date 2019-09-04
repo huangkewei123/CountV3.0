@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.demo.manipulation.mapper.base.UserMapper">
-    <resultMap id="BaseResultMap" type="com.example.demo.manipulation.entity.base.User">
+<mapper namespace="com.court.manipulation.mapper.base.UserMapper">
+    <resultMap id="BaseResultMap" type="com.court.manipulation.entity.base.User">
         <id column="id" property="id" jdbcType="VARCHAR" />
         <result column="username" property="username" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="CHAR" />
@@ -29,13 +29,13 @@
         delete from user
         where id = #{id}
     </delete>
-    <insert id="insert" parameterType="com.example.demo.manipulation.entity.base.User">
+    <insert id="insert" parameterType="com.court.manipulation.entity.base.User">
         insert into user (id, username, password,
         state, createTime)
         values (#{id}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=CHAR},
         #{state,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
     </insert>
-    <insert id="insertSelective" parameterType="com.example.demo.manipulation.entity.base.User">
+    <insert id="insertSelective" parameterType="com.court.manipulation.entity.base.User">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -72,7 +72,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.manipulation.entity.base.User">
+    <update id="updateByPrimaryKeySelective" parameterType="com.court.manipulation.entity.base.User">
         update user
         <set>
             <if test="username != null">
@@ -90,7 +90,7 @@
         </set>
         where id = #{id}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.example.demo.manipulation.entity.base.User">
+    <update id="updateByPrimaryKey" parameterType="com.court.manipulation.entity.base.User">
         update user
         set username = #{username,jdbcType=VARCHAR},
         password = #{password,jdbcType=CHAR},
@@ -101,14 +101,14 @@
     </update>
 
     <!-- 用户登录验证查询 -->
-    <select id="authentication" resultMap="BaseResultMap" parameterType="com.example.demo.manipulation.entity.base.User">
+    <select id="authentication" resultMap="BaseResultMap" parameterType="com.court.manipulation.entity.base.User">
         select
         <include refid="Base_Column_List" />
         from user
         where username = #{record.username,jdbcType=VARCHAR} and password = #{record.password,jdbcType=CHAR}
     </select>
 
-    <!--<select id="findList" resultType="com.example.demo.manipulation.entity.base.User" parameterType="Page">
+    <!--<select id="findList" resultType="User" parameterType="Page">
         select * from user 
         <where>
         	1 = 1
@@ -123,7 +123,7 @@
     </select>-->
     
     <!-- 根据角色ID查询拥有此权限的用户 -->
-    <!--<select id="findUserByRoleId" resultType="com.example.demo.manipulation.entity.base.User" parameterType="Page">
+    <!--<select id="findUserByRoleId" resultType="User" parameterType="Page">
         select b.* from user b
 		left join 
 		user_role c on b.id = c.user_id
@@ -134,7 +134,7 @@
         </where>
     </select>-->
     
-    <!--<select id="findUnallotByRole" resultType="com.example.demo.manipulation.entity.base.User" parameterType="Page">
+    <!--<select id="findUnallotByRole" resultType="User" parameterType="Page">
     	select u.* from user u 
 	    	where
 	    	u.state = 1  and u.id != '000000'

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.manipulation.mapper.base.MenuMapper">
+<mapper namespace="com.court.manipulation.mapper.base.MenuMapper">
 
-	<resultMap type="com.example.demo.manipulation.entity.base.Menu" id="menuResultMap">
+	<resultMap type="com.court.manipulation.entity.base.Menu" id="menuResultMap">
 		<id column="menuId" property="menuId" />
 		<result column="title" property="title" />
 		<result column="menuCode" property="menuCode" />
@@ -12,7 +12,7 @@
 	</resultMap>
 
 	<!-- ztree -->
-	<resultMap type="com.example.demo.manipulation.entity.base.Menu" id="menuZtreeResultMap">
+	<resultMap type="com.court.manipulation.entity.base.Menu" id="menuZtreeResultMap">
 		<id column="menuId" property="menuId" />
 		<result column="title" property="title" />
 		<result column="href" property="href" />
@@ -44,7 +44,7 @@
 		where menuId=#{menuId}
 	</select>
 
-	<insert id="add" parameterType="com.example.demo.manipulation.entity.base.Menu">
+	<insert id="add" parameterType="com.court.manipulation.entity.base.Menu">
 		insert into menu (
 		menuId,
 		title,
@@ -68,7 +68,7 @@
 		)
 	</insert>
 
-	<update id="updateMenu" parameterType="com.example.demo.manipulation.entity.base.Menu">
+	<update id="updateMenu" parameterType="com.court.manipulation.entity.base.Menu">
 		update menu 
 		title =#{title},
 		href =#{href},
@@ -79,7 +79,7 @@
 		menuId=#{menuId}
 	</update>
 
-	<update id="editicon" parameterType="com.example.demo.manipulation.entity.base.Menu">
+	<update id="editicon" parameterType="com.court.manipulation.entity.base.Menu">
 		update menu set
 		icon=#{icon}
 		where menuId=#{menuId}
@@ -91,7 +91,7 @@
 		where menuId=#{menuId}
 	</delete>
 
-	<select id="findPage" parameterType="Menu" resultType="com.example.demo.manipulation.entity.base.Menu">
+	<select id="findPage" parameterType="Menu" resultType="com.court.manipulation.entity.base.Menu">
 		select * from menu 
 		<where>
 			1 = 1
@@ -186,7 +186,7 @@
 		order by m.seq
 	</select>
 	
-	<select id="findList" parameterType="com.example.demo.manipulation.entity.base.Menu" resultType="com.example.demo.manipulation.entity.base.Menu">
+	<select id="findList" parameterType="com.court.manipulation.entity.base.Menu" resultType="com.court.manipulation.entity.base.Menu">
 		SELECT m.* FROM menu m
 		<where>
 			1 = 1
@@ -199,7 +199,7 @@
 		</where>
 	</select>
 	
-	<!--<select id="findMenuByRole" parameterType="Page" resultType="com.example.demo.manipulation.entity.base.Menu">
+	<!--<select id="findMenuByRole" parameterType="Page" resultType="Menu">
 		select a.* from menu a
 		left join 
 		role_menu b on a.menuId = b.menuId
@@ -216,7 +216,7 @@
 		</where>
 	</select>
 	
-	<select id="findUnllotMenuByRole" parameterType="Page" resultType="com.example.demo.manipulation.entity.base.Menu">
+	<select id="findUnllotMenuByRole" parameterType="Page" resultType="Menu">
 		select a.* from menu a
 		<where> 
 			a.menuId not in (

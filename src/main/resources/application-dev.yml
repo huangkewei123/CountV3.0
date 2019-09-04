@@ -46,7 +46,7 @@ pagehelper:
     count: countSql
 
 mybatis:
-  type-aliases-package: com.example.demo.manipulation.entity
+  type-aliases-package: com.court
   configuration:
     cache-enabled: true
   table:
@@ -54,5 +54,5 @@ mybatis:
   database:
     type: mysql
   model:
-    pack: com.example.demo.manipulation.entity
+    pack: com.manipulation.entity
   mapperLocations: classpath*:/mapper/*/*Mapper.xml,classpath*:com/gitee/sunchenbin/mybatis/actable/mapping/*/*.xml
